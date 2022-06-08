@@ -4,6 +4,10 @@ import torch
 from exp.exp_main import Exp_Main
 import random
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
+
 
 fix_seed = 2021
 random.seed(fix_seed)
@@ -87,7 +91,7 @@ if args.use_gpu and args.use_multi_gpu:
     device_ids = args.devices.split(',')
     args.device_ids = [int(id_) for id_ in device_ids]
     args.gpu = args.device_ids[0]
-
+import matplotlib.pyplot as plt
 print('Args in experiment:')
 print(args)
 
