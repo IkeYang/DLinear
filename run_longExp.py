@@ -13,14 +13,14 @@ np.random.seed(fix_seed)
 parser = argparse.ArgumentParser(description='Autoformer & Transformer family for Time Series Forecasting')
 
 # basic config
-parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
-parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-parser.add_argument('--model', type=str, required=True, default='Autoformer',
+parser.add_argument('--is_training', type=int, required=False, default=1, help='status')
+parser.add_argument('--model_id', type=str, required=False, default='test', help='model id')
+parser.add_argument('--model', type=str, required=False, default='Autoformer',
                     help='model name, options: [Autoformer, Informer, Transformer]')
 
 # data loader
-parser.add_argument('--data', type=str, required=True, default='ETTm1', help='dataset type')
-parser.add_argument('--root_path', type=str, default='./data/ETT/', help='root path of the data file')
+parser.add_argument('--data', type=str, required=False, default='ETTh1', help='dataset type')
+parser.add_argument('--root_path', type=str, default='./data', help='root path of the data file')
 parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')
 parser.add_argument('--features', type=str, default='M',
                     help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, S:univariate predict univariate, MS:multivariate predict univariate')
@@ -30,7 +30,7 @@ parser.add_argument('--freq', type=str, default='h',
 parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
 
 # forecasting task
-parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
+parser.add_argument('--seq_len', type=int, default=336, help='input sequence length')
 parser.add_argument('--label_len', type=int, default=48, help='start token length')
 parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
 
@@ -60,7 +60,7 @@ parser.add_argument('--output_attention', action='store_true', help='whether to 
 parser.add_argument('--do_predict', action='store_true', help='whether to predict unseen future data')
 
 # optimization
-parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
+parser.add_argument('--num_workers', type=int, default=0, help='data loader num workers')
 parser.add_argument('--itr', type=int, default=2, help='experiments times')
 parser.add_argument('--train_epochs', type=int, default=10, help='train epochs')
 parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
